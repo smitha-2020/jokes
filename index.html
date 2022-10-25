@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <div class="container">
+        <div class="main-box">
+            <i>Let's find out what the next joke is !!?</i>
+            <p id="joke"></p>
+            <button class="btn-joke">Click</button>
+            
+        </div>
+
+      
+
+    </div>
+
+    <script>
+        const pJoke = document.getElementById('joke');
+        const btnJoke = document.querySelector('.btn-joke');
+
+        btnJoke.addEventListener('click',fetchJokes);
+
+
+        const setHeader = {headers: {Accept: 'application/json'}}
+        
+        // function fetchJokes(){
+        //      fetch('https://icanhazdadjoke.com',setHeader).then(res => res.json()).then(data => pJoke.innerHTML = data.joke).catch(err => console.log(err));
+        // }
+
+        
+
+        async function fetchJokes(){
+            try{const res = await fetch('https://icanhazdadjoke.com',setHeader);
+             const data = await res.json();
+             pJoke.innerHTML = data.joke;}
+             catch(err){
+                console.log(err);
+             }
+             
+             
+
+        } 
+        fetchJokes();
+    </script>
+    
+</body>
+</html>
